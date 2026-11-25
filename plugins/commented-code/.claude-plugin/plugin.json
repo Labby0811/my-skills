@@ -1,6 +1,6 @@
 {
   "name": "commented-code",
-  "version": "0.1.0",
-  "description": "Always-on code documentation rules layered on top of ponytail: short docstrings, block comments, descriptive names, units in names.",
+  "version": "0.2.0",
+  "description": "Always-on code documentation rules layered on top of ponytail: short docstrings, block comments, short clear names, meters as implicit unit.",
   "author": { "name": "Giuseppe" }
 }

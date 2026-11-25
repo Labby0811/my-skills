@@ -30,12 +30,16 @@ Every other ponytail rule stays unchanged.
    gets a short comment with what it does and why. Max 2-3 lines.
 5. Comments stay short. They follow the shortest-diff spirit too:
    explain what happens in a few words, never a paragraph.
-6. Names: descriptive and intuitive for variables, functions and classes.
-   Never use invented abbreviations. Never use single letters,
-   except loop indices and standard math notation that matches a formula.
-7. Units: physical quantities carry the unit in the name
-   (distance_m, yaw_rad, angle_deg, timeout_s, offset_mm).
-   Docstring Args and Returns also state the unit.
+6. Names: clear but short, usually one or two words (width, corner_x,
+   heights). Never long chains like plane_heights_per_patch.
+   Common short forms are fine (rng, idx, n_points). Never use invented
+   abbreviations. Never use single letters, except loop indices and
+   standard math notation that matches a formula.
+7. Units: meters are the implicit unit. Each file that handles lengths
+   gets one note at the top: "Units: meters unless stated otherwise."
+   Lengths in meters carry no suffix. Any other unit keeps it in the name
+   (yaw_rad, angle_deg, timeout_s, offset_mm).
+   Docstring Args and Returns state the unit only when it is not meters.
 8. Existing code: when you modify a function that has no docs or comments,
    add them to that function. Do not touch functions outside the change.
 9. Comments do NOT count in ponytail's "shortest diff" measure.
@@ -47,18 +51,21 @@ Every other ponytail rule stays unchanged.
 
 ## Example (Python)
 ```python
-def fit_plane(points_m):
+"""Plane fitting helpers. Units: meters unless stated otherwise."""
+
+
+def fit_plane(points):
     """Fit a plane to 3D points with least squares.
 
     Args:
-        points_m: (N, 3) array of points, in meters.
+        points: (N, 3) array of points.
 
     Returns:
-        (normal, offset_m): unit normal vector and plane offset in meters.
+        (normal, offset): unit normal vector and plane offset.
     """
     # Center points so the SVD finds the direction of least variance
-    centroid_m = points_m.mean(axis=0)
-    _, _, vh = np.linalg.svd(points_m - centroid_m)
+    centroid = points.mean(axis=0)
+    _, _, vh = np.linalg.svd(points - centroid)
     normal = vh[-1]
-    return normal, normal @ centroid_m
+    return normal, normal @ centroid
 ```
