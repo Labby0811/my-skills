@@ -1,12 +1,17 @@
 {
   "name": "giuseppe-skills",
   "owner": { "name": "Giuseppe" },
-  "description": "Personal Claude Code coding-style plugins.",
+  "description": "Personal Claude Code plugins: coding style and teaching workflow.",
   "plugins": [
     {
       "name": "commented-code",
       "source": "./plugins/commented-code",
       "description": "Always-on code documentation rules layered on top of ponytail: short docstrings, block comments, descriptive names, units in names."
+    },
+    {
+      "name": "step-by-step-teacher",
+      "source": "./plugins/step-by-step-teacher",
+      "description": "Teach hands-on technical projects one verified step at a time: the user implements, the assistant explains and verifies."
     }
   ]
 }

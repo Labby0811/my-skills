@@ -1,0 +1,6 @@
+{
+  "name": "step-by-step-teacher",
+  "version": "0.1.0",
+  "description": "Teach hands-on technical projects one verified step at a time: the user implements, the assistant explains and verifies.",
+  "author": { "name": "Giuseppe" }
+}
